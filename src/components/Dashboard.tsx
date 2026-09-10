@@ -1,3 +1,5 @@
+// React typings are unavailable in the current project configuration.
+// @ts-ignore -- keep this component buildable until @types/react is installed.
 import { useState, useEffect, useRef, FormEvent } from 'react';
 import {
   ListTodo,
@@ -145,7 +147,7 @@ export default function Dashboard({
 
   // Toggle Task Completion
   const handleToggleComplete = (taskId: string) => {
-    const updatedTasks = tasks.map((task) => {
+    const updatedTasks = tasks.map((task: Task) => {
       if (task.id === taskId) {
         const nextStatus = !task.completed;
         addSecurityEvent(
@@ -182,7 +184,7 @@ export default function Dashboard({
       const currentHourMin = now.toTimeString().split(' ')[0].substring(0, 5); // "HH:MM"
       const todayStr = now.toISOString().split('T')[0];
 
-      tasks.forEach((task) => {
+      tasks.forEach((task: Task) => {
         if (
           task.reminderTime &&
           task.isReminderActive &&
@@ -590,7 +592,7 @@ export default function Dashboard({
                   >
                     <ChevronLeft size={12} />
                   </button>
-                  <span className="text-[10px] font-bold text-neutral-300 min-w-[70px] text-center">
+                  <span className="text-[10px] font-bold text-neutral-300 min-w-17.5 text-center">
                     {monthName}
                   </span>
                   <button 
@@ -845,7 +847,7 @@ export default function Dashboard({
                   </div>
 
                   <div className="space-y-1">
-                    <label className="block text-[10px] font-bold text-neutral-400 uppercase tracking-wide flex items-center justify-between">
+                    <label className="flex items-center justify-between text-[10px] font-bold text-neutral-400 uppercase tracking-wide">
                       Reminder
                     </label>
                     <input

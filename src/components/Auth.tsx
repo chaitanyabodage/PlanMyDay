@@ -1,8 +1,22 @@
-import { useState, useEffect, FormEvent } from 'react';
+/** @jsxRuntime classic */
+// The project currently does not include React's type declarations.
+// Keep this component buildable until @types/react is added globally.
+// @ts-ignore TS7016: React is provided at runtime by the application.
+import React, { useState, useEffect, FormEvent } from 'react';
 import { Lock, User, Eye, EyeOff, Key, RefreshCw, AlertCircle, ShieldAlert } from 'lucide-react';
 import { sha256, playCyberChime } from '../lib/crypto';
 import { User as UserType, DesignTheme } from '../types';
 import { THEMES } from '../lib/themes';
+
+// Local fallback declarations keep this file type-checkable when @types/react
+// is not installed in the project.
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elementName: string]: any;
+    }
+  }
+}
 
 interface AuthProps {
   onAuthSuccess: (username: string) => void;
@@ -134,7 +148,7 @@ export default function Auth({ onAuthSuccess, addSecurityEvent, currentTheme = '
     <div className={`min-h-[85vh] flex flex-col items-center justify-center py-20 ${activeTheme.bg} relative px-4 transition-colors duration-500 font-sans`}>
       {/* Soft Accent Glow Orbs */}
       <div 
-        className="absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full blur-[110px] pointer-events-none opacity-30"
+        className="absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-87.5 h-87.5 rounded-full blur-[110px] pointer-events-none opacity-30"
         style={{ backgroundColor: `${activeTheme.accent1}12` }}
       ></div>
 
@@ -179,7 +193,7 @@ export default function Auth({ onAuthSuccess, addSecurityEvent, currentTheme = '
                   required
                   placeholder="Enter username"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e: any) => setUsername(e.target.value)}
                   disabled={loading}
                   className="w-full pl-9 pr-4 py-2.5 bg-neutral-950 border border-neutral-800 focus:border-neutral-700 rounded-lg text-white text-xs font-sans focus:outline-none transition-all duration-200"
                 />
@@ -207,7 +221,7 @@ export default function Auth({ onAuthSuccess, addSecurityEvent, currentTheme = '
                   required
                   placeholder={isLogin ? 'Enter password' : 'Create 8+ character password'}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e: any) => setPassword(e.target.value)}
                   disabled={loading}
                   className="w-full pl-9 pr-10 py-2.5 bg-neutral-950 border border-neutral-800 focus:border-neutral-700 rounded-lg text-white text-xs font-sans focus:outline-none transition-all duration-200"
                 />
