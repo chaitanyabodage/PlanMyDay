@@ -1,0 +1,6 @@
+{
+  "name": "PlanMyDay",
+  "description": "A premium, minimalist, client-side daily task manager and workspace scheduler.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
